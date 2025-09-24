@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11012.119 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGrok", "IGrok\IGrok.csproj", "{4C52596E-AD7F-4A87-8598-77F99142C7ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGrok.Tests", "IGrok.Tests\IGrok.Tests.csproj", "{EA5B16E6-F6EF-4B6C-BC10-A2B3E88C8FC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C52596E-AD7F-4A87-8598-77F99142C7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C52596E-AD7F-4A87-8598-77F99142C7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C52596E-AD7F-4A87-8598-77F99142C7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C52596E-AD7F-4A87-8598-77F99142C7ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5B16E6-F6EF-4B6C-BC10-A2B3E88C8FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5B16E6-F6EF-4B6C-BC10-A2B3E88C8FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5B16E6-F6EF-4B6C-BC10-A2B3E88C8FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5B16E6-F6EF-4B6C-BC10-A2B3E88C8FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {872C5D69-3FD5-48F3-9793-D35F7DE421A7}
+	EndGlobalSection
+EndGlobal

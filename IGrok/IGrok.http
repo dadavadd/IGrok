@@ -1,0 +1,6 @@
+@IGrok_HostAddress = http://localhost:5165
+
+GET {{IGrok_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
