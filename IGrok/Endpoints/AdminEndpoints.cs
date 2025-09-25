@@ -16,14 +16,9 @@ public static class AdminEndpoints
             .WithTags("Admin")
             .AddEndpointFilter<ApiKeyEndpointFilter>();
 
-        adminGroup.MapGet("/users", async Task<Results<Ok<List<User>>, BadRequest<ProblemDetails>>> (
-            [FromQuery] int page, [FromQuery] int pageSize, IUserService userService) =>
+        adminGroup.MapGet("/users", async Task<Results<Ok<List<User>>, BadRequest<ProblemDetails>>> 
+            (IUserService userService, [FromQuery] int page = 1, [FromQuery] int pageSize = 10) =>
         {
-            if (page <= 0 || pageSize <= 0)
-            {
-                return TypedResults.BadRequest(new ProblemDetails { Title = "Invalid pagination parameters" });
-            }
-
             var users = await userService.GetUsersAsync(page, pageSize);
             return TypedResults.Ok(users);
         })
