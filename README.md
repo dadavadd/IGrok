@@ -80,7 +80,7 @@ The API is versioned under `/api/v1`.
 
 > **Note:** All admin endpoints require an `X-Api-Key` header for authorization.
 
--   `POST /users`: Gets a list of users.
+-   `GET /users`: Gets a list of users.
 -   `POST /users`: Creates a new user license.
 -   `PUT /users/{key}/hwid`: Updates or resets a user's HWID.
 -   `PATCH /users/{key}/status`: Activates or deactivates a user account.
