@@ -1,8 +1,6 @@
 using IGrok.Configurations;
 using IGrok.Endpoints;
 using IGrok.Extensions;
-using IGrok.Handlers;
-using IGrok.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);

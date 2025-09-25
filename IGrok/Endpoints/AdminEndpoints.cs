@@ -1,6 +1,7 @@
 ﻿using IGrok.DTOs;
 using IGrok.DTOs.Admin;
 using IGrok.Filters;
+using IGrok.Models;
 using IGrok.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,21 @@ public static class AdminEndpoints
         var adminGroup = app.MapGroup("/api/v1/admin")
             .WithTags("Admin")
             .AddEndpointFilter<ApiKeyEndpointFilter>();
+
+        adminGroup.MapGet("/users", async Task<Results<Ok<List<User>>, BadRequest<ProblemDetails>>> (
+            [FromQuery] int page, [FromQuery] int pageSize, IUserService userService) =>
+        {
+            if (page <= 0 || pageSize <= 0)
+            {
+                return TypedResults.BadRequest(new ProblemDetails { Title = "Invalid pagination parameters" });
+            }
+
+            var users = await userService.GetUsersAsync(page, pageSize);
+            return TypedResults.Ok(users);
+        })
+        .Produces<List<User>>(StatusCodes.Status200OK)
+        .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
+        .WithSummary("Returns paginated list of users.");
 
         adminGroup.MapPost("/users", async Task<Results<Created<ValidationResponse>, Conflict<ProblemDetails>, ValidationProblem>>
             (CreateUserRequest request, IUserService userService) =>
@@ -55,5 +71,6 @@ public static class AdminEndpoints
         })
         .Produces(StatusCodes.Status204NoContent)
         .WithSummary("Permanently deletes a user. This action cannot be undone.");
+
     }
 }

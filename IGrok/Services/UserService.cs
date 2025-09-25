@@ -10,6 +10,18 @@ namespace IGrok.Services;
 
 public class UserService(AppDbContext db, ILogger<UserService> logger, IJwtService jwtService) : IUserService
 {
+    public async Task<List<User>> GetUsersAsync(int page, int pageSize)
+    {
+        if (page <= 0) page = 1;
+        if (pageSize <= 0) pageSize = 10;
+
+        return await db.Users
+            .OrderBy(u => u.Id)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+    }
+
     public async Task<LoginResponse> AuthenticateAsync(string key, string hwid)
     {
         var user = await ValidateLicenseAsync(key, hwid);

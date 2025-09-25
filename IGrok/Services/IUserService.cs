@@ -1,4 +1,5 @@
 ﻿using IGrok.DTOs;
+using IGrok.Models;
 
 namespace IGrok.Services;
 
@@ -10,4 +11,6 @@ public interface IUserService
     Task<ValidationResponse> UpdateUserHwidAsync(string key, string? newHwid);
     Task SetUserActivationStatusAsync(string key, bool isActive);
     Task DeleteUserAsync(string key);
+
+    Task<List<User>> GetUsersAsync(int page, int pageSize);
 }
