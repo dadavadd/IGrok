@@ -1,4 +1,5 @@
 ﻿using IGrok.DTOs;
+using IGrok.DTOs.Shared;
 using IGrok.Models;
 
 namespace IGrok.Services;
@@ -12,5 +13,5 @@ public interface IUserService
     Task SetUserActivationStatusAsync(string key, bool isActive);
     Task DeleteUserAsync(string key);
 
-    Task<List<User>> GetUsersAsync(int page, int pageSize);
+    Task<PaginatedResponse<User>> GetUsersAsync(int page, int pageSize);
 }

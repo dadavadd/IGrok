@@ -17,6 +17,7 @@ public static class PersistenceExtensions
 
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJwtService, JwtService>();
+        services.AddScoped<IConfigService, ConfigService>();
 
         return services;
     }

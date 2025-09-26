@@ -1,5 +1,6 @@
 ﻿using IGrok.Application;
 using IGrok.DTOs;
+using IGrok.DTOs.Shared;
 using IGrok.Exceptions.Token;
 using IGrok.Exceptions.User;
 using IGrok.Models;
@@ -10,16 +11,21 @@ namespace IGrok.Services;
 
 public class UserService(AppDbContext db, ILogger<UserService> logger, IJwtService jwtService) : IUserService
 {
-    public async Task<List<User>> GetUsersAsync(int page, int pageSize)
+    public async Task<PaginatedResponse<User>> GetUsersAsync(int page, int pageSize)
     {
         if (page <= 0) page = 1;
         if (pageSize <= 0) pageSize = 10;
 
-        return await db.Users
-            .OrderBy(u => u.Id)
+        var query = db.Users.OrderBy(u => u.Id);
+
+        var totalCount = await query.CountAsync();
+
+        var items = await query
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
+
+        return new(items, totalCount, page, pageSize);
     }
 
     public async Task<LoginResponse> AuthenticateAsync(string key, string hwid)

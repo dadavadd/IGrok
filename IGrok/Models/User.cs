@@ -15,6 +15,8 @@ public class User
     public string? RefreshToken { get; private set; }
     public DateTime? RefreshTokenExpiryTime { get; private set; }
 
+    public ICollection<Config> Configs { get; set; } = new List<Config>();
+
     public static User Create(string key, int? subscriptionDays)
     {
         var user = new User(key)

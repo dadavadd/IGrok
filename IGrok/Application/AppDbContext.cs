@@ -6,6 +6,7 @@ namespace IGrok.Application;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public required DbSet<User> Users { get; set; }
+    public required DbSet<Config> Configs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

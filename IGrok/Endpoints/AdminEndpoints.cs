@@ -1,5 +1,6 @@
 ﻿using IGrok.DTOs;
 using IGrok.DTOs.Admin;
+using IGrok.DTOs.Shared;
 using IGrok.Filters;
 using IGrok.Models;
 using IGrok.Services;
@@ -16,13 +17,13 @@ public static class AdminEndpoints
             .WithTags("Admin")
             .AddEndpointFilter<ApiKeyEndpointFilter>();
 
-        adminGroup.MapGet("/users", async Task<Results<Ok<List<User>>, BadRequest<ProblemDetails>>> 
+        adminGroup.MapGet("/users", async Task<Results<Ok<PaginatedResponse<User>>, BadRequest<ProblemDetails>>> 
             (IUserService userService, [FromQuery] int page = 1, [FromQuery] int pageSize = 10) =>
         {
             var users = await userService.GetUsersAsync(page, pageSize);
             return TypedResults.Ok(users);
         })
-        .Produces<List<User>>(StatusCodes.Status200OK)
+        .Produces<PaginatedResponse<User>>(StatusCodes.Status200OK)
         .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
         .WithSummary("Returns paginated list of users.");
 
