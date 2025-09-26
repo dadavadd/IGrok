@@ -3,7 +3,6 @@ using IGrok.DTOs.Shared;
 using IGrok.Models;
 using IGrok.Services;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace IGrok.Endpoints;

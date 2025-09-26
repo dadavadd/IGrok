@@ -1,3 +1,3 @@
 namespace IGrok.DTOs.Configs;
 
-public record CreateConfigRequest(int UserId, string Name, string JsonContent);
+public record CreateConfigRequest(string Name, string JsonContent);

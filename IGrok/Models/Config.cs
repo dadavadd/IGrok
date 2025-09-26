@@ -1,7 +1,10 @@
+using System.Text.Json.Serialization;
+
 namespace IGrok.Models;
 
 public class Config
 {
+    [JsonConstructor]
     private Config(int userId, string name, string jsonContent)
     {
         UserId = userId;
