@@ -2,11 +2,27 @@ namespace IGrok.Models;
 
 public class Config
 {
-    public int Id { get; set; }
+    private Config(int userId, string name, string jsonContent)
+    {
+        UserId = userId;
+        Name = name;
+        JsonContent = jsonContent;
+    }
 
-    public required string Name { get; set; }
-    public required string JsonContent { get; set; }
+    public int Id { get; private set; }
 
-    public int UserId { get; set; }
-    public User? User { get; set; }
+    public string Name { get; private set; }
+    public string JsonContent { get; private set; }
+
+    public int UserId { get; private set; }
+    public User? User { get; private set; }
+
+    public static Config Create(int userId, string name, string jsonContent) 
+        => new(userId, name, jsonContent);
+
+    public void Update(string name, string jsonContent)
+    {
+        Name = name;
+        JsonContent = jsonContent;
+    }
 }

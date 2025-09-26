@@ -42,12 +42,7 @@ public class ConfigService(AppDbContext context, ILogger<ConfigService> logger) 
 
     public async Task<Config> CreateConfigAsync(int userId, string name, string jsonContent)
     {
-        var config = new Config
-        {
-            UserId = userId,
-            Name = name,
-            JsonContent = jsonContent
-        };
+        var config = Config.Create(userId, name, jsonContent);
 
         context.Configs.Add(config);
         await context.SaveChangesAsync();
@@ -70,8 +65,7 @@ public class ConfigService(AppDbContext context, ILogger<ConfigService> logger) 
             throw new ConfigAccessDeniedException(id.ToString());
         }
 
-        config.Name = name;
-        config.JsonContent = jsonContent;
+        config.Update(name, jsonContent);
         await context.SaveChangesAsync();
         logger.LogInformation("Updated config with ID {ConfigId}", id);
     }
