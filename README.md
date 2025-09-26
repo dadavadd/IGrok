@@ -1,4 +1,6 @@
-A robust and lightweight backend service for managing software licenses and user authentication. Built with modern .NET, it features JWT-based authentication, refresh tokens, hardware ID (HWID) locking, and a secure admin API.
+# IGrok API
+
+A robust and lightweight backend service for managing software licenses and user authentication. Built with modern .NET, it features JWT-based authentication, refresh tokens, hardware ID (HWID) locking, user-specific configuration storage, and a secure admin API.
 
 ## ✨ Key Features
 
@@ -6,6 +8,7 @@ A robust and lightweight backend service for managing software licenses and user
 -   **License Management**: Admin API to create, delete, and manage user licenses.
 -   **Subscription Control**: Set expiration dates for user subscriptions.
 -   **Hardware ID (HWID) Locking**: Bind a user license to a specific machine.
+-   **User Config Storage**: Allows authenticated users to store and manage their own JSON-based configurations.
 -   **Account Status**: Activate or deactivate user accounts on the fly.
 -   **Secure Admin API**: Admin endpoints are protected by a configurable API Key.
 -   **Rate Limiting**: Protects public endpoints from brute-force attacks.
@@ -75,6 +78,16 @@ The API is versioned under `/api/v1`.
 
 -   `POST /login`: Authenticates a user with their `Key` and `Hwid`. Returns an `AccessToken` and `RefreshToken`.
 -   `POST /refresh`: Refreshes an expired `AccessToken` using a valid `RefreshToken`.
+
+### Configs API (`/api/v1/configs`)
+
+> **Note:** All config endpoints require a bearer `AccessToken` for authorization.
+
+-   `GET /`: Gets a paginated list of configs for the authenticated user.
+-   `GET /{id}`: Gets a specific config by its ID.
+-   `POST /`: Creates a new config for the authenticated user.
+-   `PUT /{id}`: Updates an existing config.
+-   `DELETE /{id}`: Deletes a config.
 
 ### Admin API (`/api/v1/admin`)
 
